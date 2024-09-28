@@ -8,7 +8,9 @@ const SearchBar = () => {
         placeholder="Search..."
         className="p-2 rounded-md bg-gray-700 text-white"
       />
-      <button className="p-2 rounded-md">Search</button>
+      <button className="p-3 bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md">
+        Search
+      </button>
     </div>
   );
 };
