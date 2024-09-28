@@ -19,6 +19,9 @@ const Navbar = () => {
             </button>
           </Link>
         )}
+        <Link to="/admin-login">
+          <button>Admin Login</button>
+        </Link>
         <SearchBar />
       </div>
     </nav>
