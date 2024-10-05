@@ -13,23 +13,58 @@ const Auth = ({ type }) => {
     setPostInputs({ ...postInputs, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle signin or signup logic here
-    // For example, you can make an API call to your backend
-    // or use a library like Firebase to handle authentication
+
     if (type === 'signin') {
-      
-      
-      // alert("you logged in")
-      // Signin logic
+      try {
+        const response = await fetch('http://127.0.0.1:8787/signin', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: postInputs.email,
+            password: postInputs.password
+          })
+        });
+        const data = await response.json();
+        if (data.token) {
+          localStorage.setItem('token', data.token);  // Store token in localStorage
+          navigate('/movies');
+        } else {
+          alert(data.message || 'Signin failed');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Error occurred during signin');
+      }
+    
     } else {
-      
-      
-      alert("you signed up")
-      // Signup logic
+      try {
+        const response = await fetch('http://127.0.0.1:8787/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: postInputs.name,
+            email: postInputs.email,
+            password: postInputs.password
+          })
+        });
+        const data = await response.json();
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          navigate('/movies');
+        } else {
+          alert(data.message || 'Signup failed');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Error occurred during signup');
+      }
     }
-    navigate('/'); // Redirect to homepage after signin or signup
   };
 
   return (
