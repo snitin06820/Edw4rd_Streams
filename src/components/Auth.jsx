@@ -19,7 +19,7 @@ const Auth = ({ type }) => {
 
     if (type === 'signin') {
       try {
-        const response = await fetch('http://127.0.0.1:8787/signin', {
+        const response = await fetch('https://edw4rd-stream.snitin068.workers.dev/signin', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ const Auth = ({ type }) => {
     
     } else {
       try {
-        const response = await fetch('http://127.0.0.1:8787/signup', {
+        const response = await fetch('https://edw4rd-stream.snitin068.workers.dev/signup', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
