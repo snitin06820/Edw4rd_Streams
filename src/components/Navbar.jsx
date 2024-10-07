@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <nav className="flex justify-between items-center bg-gray-800 p-4 text-white">
-      <Link to="/">
+      <Link to="/movies">
         <h1 className="text-2xl font-bold cursor-pointer">Edw4rd_Streams</h1>
       </Link>
       <div className="flex space-x-4">
