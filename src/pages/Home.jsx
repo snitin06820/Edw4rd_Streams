@@ -1,30 +1,33 @@
 import React from "react";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import MovieCard from "../components/MovieCard";
 
-const Home = ({ movies }) => {
-  const [movieses, setMovieses] = useState([]);
+const Home = () => {
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
-      const token = localStorage.getItem('token'); 
+      const token = localStorage.getItem("token");
 
       try {
-        const response = await fetch('http://127.0.0.1:8787/movies', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`  
+        const response = await fetch(
+          "https://edw4rd-stream.snitin068.workers.dev/movies",
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
-        });
+        );
 
         if (response.ok) {
           const data = await response.json();
-          setMovieses(data.moviesData); 
+          setMovies(data.moviesData);
         } else {
-          console.error('Failed to fetch movies');
+          console.error("Failed to fetch movies");
         }
       } catch (error) {
-        console.error('Error fetching movies:', error);
+        console.error("Error fetching movies:", error);
       }
     };
 
